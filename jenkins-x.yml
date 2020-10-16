@@ -1,0 +1,19 @@
+buildPack: charts
+pipelineConfig:
+  pipelines:
+    overrides:
+      - name: release
+        step:
+          sh: make release
+          image: gcr.io/jenkinsxio/jx-cli
+          dir: /workspace/source/charts/jx-bdd
+    release:
+      pipeline:
+        stages:
+          - agent:
+              image: gcr.io/jenkinsxio/builder-go
+            name: chart
+            steps:
+              - command: ./promote.sh
+                dir: /workspace/source
+                name: promote-release

@@ -1,0 +1,72 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ template "jx-bdd.name" . }}
+  labels:
+    app: {{ template "jx-bdd.name" . }}
+    chart: {{ template "jx-bdd.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+{{- if .Values.jobAnnotations }}
+  annotations:
+{{ toYaml .Values.jobAnnotations | indent 4 }}
+{{- end }}
+spec:
+  backoffLimit: {{ .Values.backoffLimit }}
+  activeDeadlineSeconds: {{ .Values.activeDeadlineSeconds }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "jx-bdd.name" . }}
+        release: {{ .Release.Name }}
+{{- if .Values.podAnnotations }}
+      annotations:
+{{ toYaml .Values.podAnnotations | indent 8 }}
+{{- end }}
+    spec:
+{{- if .Values.restartPolicy }}
+      restartPolicy: {{ .Values.restartPolicy }}
+{{- end }}
+      serviceAccountName: "{{ .Values.serviceAccount.name | default "jx-bdd" }}"
+      containers:
+        - name: {{ .Chart.Name }}
+          {{ if .Values.command -}}
+          command: {{ .Values.command }}
+          {{- end }}
+          {{ if .Values.args -}}
+          args:
+{{ toYaml .Values.args | indent 10 }}
+          {{- end }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          env:
+          - name: GIT_USERNAME
+            value: "{{ .Values.bdd.username }}"
+          - name: GIT_TOKEN
+            value: "{{ .Values.bdd.token }}"
+          - name: GH_OWNER
+            value: "{{ .Values.bdd.owner }}"
+          - name: GIT_SERVER_HOST
+            value: "{{ .Values.bdd.gitServerHost }}"
+          - name: QUICKSTART
+            value: "{{ .Values.bdd.quickstart }}"
+{{- if .Values.env }}
+{{- range $pkey, $pval := .Values.env }}
+          - name: {{ $pkey }}
+            value: {{ $pval }}
+{{- end }}
+{{- end }}
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}

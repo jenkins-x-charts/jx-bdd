@@ -1,0 +1,62 @@
+bdd:
+  # the git username used to run the BDD tests
+  username: ""
+
+  # the git token used to run the BDD tests
+  token: ""
+
+  # the git organisation used to create quickstarts inside. Defaults to the git user
+  owner: ""
+
+  # the git server host
+  gitServerHost: "github.com"
+
+  # the name of the quickstart to test
+  quickstart: golang
+
+
+image:
+  repository: gcr.io/jenkinsxio/jx-bdd
+  tag: "latest"
+  #pullPolicy: IfNotPresent
+  pullPolicy: Always
+
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  name: "jx-bdd"
+  # a map of annotations to add to the ServiceAccount
+  annotations: {}
+
+# define environment variables here as a map of key: value
+env: {}
+
+# a map of annotations to add to the pod
+podAnnotations: {}
+
+jobAnnotations: {}
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 256Mi
+  requests:
+    cpu: 80m
+    memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+terminationGracePeriodSeconds: 30
+
+activeDeadlineSeconds: 300
+
+backoffLimit: 1
+
+# default is Always but for Jobs use Never or OnFailure
+restartPolicy: Never
