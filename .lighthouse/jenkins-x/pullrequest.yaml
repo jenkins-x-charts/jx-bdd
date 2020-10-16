@@ -238,7 +238,7 @@ spec:
           name: jx-variables
           resources: {}
         - args:
-          - cd /workspace/source/charts/node-http && jx step helm build
+          - cd /workspace/source/charts/jx-bdd && jx step helm build
           command:
           - /bin/sh
           - -c
