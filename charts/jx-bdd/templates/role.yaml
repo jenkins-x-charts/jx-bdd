@@ -4,7 +4,9 @@ metadata:
   name: {{ template "jx-bdd.name" . }}
 rules:
 - apiGroups: [""]
-  resources: ["configmaps"]
+  resources:
+  - pods
+  - pods/log
   verbs: ["get", "list", "watch"]
 - apiGroups: ["jenkins.io"]
   resources: ["*"]
