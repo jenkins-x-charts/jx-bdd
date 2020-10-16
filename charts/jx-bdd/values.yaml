@@ -16,8 +16,8 @@ bdd:
 
 
 image:
-  repository: gcr.io/jenkinsxio/jx-bdd
-  tag: "latest"
+  repository: gcr.io/jx-labs-infra/jx-bdd
+  tag: 0.0.4
   #pullPolicy: IfNotPresent
   pullPolicy: Always
 
