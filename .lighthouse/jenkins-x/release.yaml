@@ -248,7 +248,7 @@ spec:
         - args:
           - source /workspace/source/.jx/variables.sh && cd /workspace/source/charts/jx-bdd && make release
           command:
-          - /bin/sh
+          - /bin/bash
           - -c
           image: gcr.io/jenkinsxio/jx-cli:latest
           name: build-helm-release
