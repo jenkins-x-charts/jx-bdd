@@ -1,6 +1,8 @@
 CHART_REPO := gs://jenkinsxio/charts
 NAME := jx-bdd
 
+VERSION ?= 0.0.1
+
 build: clean
 	rm -rf Chart.lock
 	helm dependency build
@@ -20,7 +22,7 @@ clean:
 	rm -rf ${NAME}*.tgz
 
 release: clean
-	#sed -i -e "s/version:.*/version: $(VERSION)/" Chart.yaml
+	sed -i -e "s/version:.*/version: $(VERSION)/" Chart.yaml
 
 	helm dependency build
 	helm lint
