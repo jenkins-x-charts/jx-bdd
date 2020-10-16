@@ -20,7 +20,7 @@ clean:
 	rm -rf ${NAME}*.tgz
 
 release: clean
-	sed -i -e "s/version:.*/version: $(VERSION)/" Chart.yaml
+	#sed -i -e "s/version:.*/version: $(VERSION)/" Chart.yaml
 
 	helm dependency build
 	helm lint
