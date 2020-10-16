@@ -1,6 +1,6 @@
 ## jx bdd
 
-This is a helm chart for running the Jenkins X BDD tests in a cluster
+This is a helm chart for running the Jenkins X BDD tests in a cluster to verify your installation
 
 
 ## Installing 
