@@ -38,7 +38,7 @@ spec:
 {{ toYaml .Values.args | indent 10 }}
           {{- end }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: "{{ .Values.jxbdd.repository }}:{{ .Values.jxbdd.tag }}"
           env:
           - name: GIT_USERNAME
             value: "{{ .Values.bdd.username }}"

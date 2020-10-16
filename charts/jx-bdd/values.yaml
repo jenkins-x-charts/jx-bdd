@@ -21,6 +21,11 @@ image:
   #pullPolicy: IfNotPresent
   pullPolicy: Always
 
+jxbdd:
+  repository: gcr.io/jenkinsxio/jx-bdd
+  tag: "latest"
+
+
 nameOverride: ""
 fullnameOverride: ""
 
