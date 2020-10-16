@@ -9,3 +9,6 @@ rules:
 - apiGroups: ["jenkins.io"]
   resources: ["*"]
   verbs: ["get", "list", "watch"]
+- apiGroups: ["tekton.dev"]
+  resources: ["*"]
+  verbs: ["get", "list", "watch"]
