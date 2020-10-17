@@ -26,4 +26,3 @@ To terminate the BDD tests
 ```bash          
 helm delete bdd
 ```
-
