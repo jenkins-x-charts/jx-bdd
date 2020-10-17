@@ -2,7 +2,6 @@
 
 This is a helm chart for running the Jenkins X BDD tests in a cluster to verify your installation
 
-
 ## Installing 
 
 Make sure you have the `jx3` helm repository added:
