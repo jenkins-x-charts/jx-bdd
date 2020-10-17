@@ -24,7 +24,6 @@ kubectl logs -f -l app=jx-bdd
 
 To terminate the BDD tests
 
-
 ```bash          
 helm delete bdd
 ```
