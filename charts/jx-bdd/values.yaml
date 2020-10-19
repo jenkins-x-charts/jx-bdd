@@ -59,7 +59,7 @@ affinity: {}
 
 terminationGracePeriodSeconds: 30
 
-activeDeadlineSeconds: 300
+activeDeadlineSeconds: 12000
 
 backoffLimit: 1
 
