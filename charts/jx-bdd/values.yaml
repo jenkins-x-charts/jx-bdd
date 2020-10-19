@@ -17,7 +17,7 @@ bdd:
 
 image:
   repository: gcr.io/jenkinsxio/jx-bdd
-  tag: "3.0.632"
+  tag: 1.0.7
   #pullPolicy: IfNotPresent
   pullPolicy: Always
 
