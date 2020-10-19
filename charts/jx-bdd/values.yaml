@@ -61,7 +61,7 @@ terminationGracePeriodSeconds: 30
 
 activeDeadlineSeconds: 12000
 
-backoffLimit: 1
+backoffLimit: 0
 
 # default is Always but for Jobs use Never or OnFailure
 restartPolicy: Never
