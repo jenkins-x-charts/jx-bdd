@@ -31,20 +31,31 @@ spec:
       containers:
         - name: {{ .Chart.Name }}
           {{ if .Values.command -}}
-          command: {{ .Values.command }}
+          command:
+{{ toYaml .Values.command | indent 10 }}
           {{- end }}
           {{ if .Values.args -}}
           args:
 {{ toYaml .Values.args | indent 10 }}
           {{- end }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          image: "{{ .Values.jxbdd.repository }}:{{ .Values.jxbdd.tag }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           env:
+          - name: GIT_SECRET_MOUNT_PATH
+            value: /secrets/git
           - name: GIT_USERNAME
-            value: "{{ .Values.bdd.username }}"
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.bdd.gitSecret | default "tekton-git" }}
+                key: username
           - name: GIT_TOKEN
-            value: "{{ .Values.bdd.token }}"
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.bdd.gitSecret | default "tekton-git" }}
+                key: password
           - name: GH_OWNER
+            value: "{{ .Values.bdd.owner }}"
+          - name: GIT_ORGANISATION
             value: "{{ .Values.bdd.owner }}"
           - name: GIT_SERVER_HOST
             value: "{{ .Values.bdd.gitServerHost }}"

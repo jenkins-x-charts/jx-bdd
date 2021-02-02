@@ -1,9 +1,6 @@
 bdd:
-  # the git username used to run the BDD tests
-  username: ""
-
-  # the git token used to run the BDD tests
-  token: ""
+  # the git secret name used to find the git user and token
+  gitSecret: tekton-git
 
   # the git organisation used to create quickstarts inside. Defaults to the git user
   owner: ""
@@ -14,17 +11,22 @@ bdd:
   # the name of the quickstart to test
   quickstart: golang
 
+command:
+  - bash
+  - -c 
+
+args:
+  - |
+    git clone https://github.com/jenkins-x/bdd-jx3
+    cd bdd-jx3
+    jx gitops git setup
+    go mod download
+    make test-quickstart-golang-http
 
 image:
-  repository: gcr.io/jenkinsxio/jx-bdd
-  tag: "3.0.632"
-  #pullPolicy: IfNotPresent
-  pullPolicy: Always
-
-jxbdd:
-  repository: gcr.io/jenkinsxio/jx-bdd
-  tag: "latest"
-
+  repository: ghcr.io/jenkins-x/jx-go
+  tag: "3.1.211"
+  pullPolicy: IfNotPresent
 
 nameOverride: ""
 fullnameOverride: ""
@@ -45,11 +47,11 @@ jobAnnotations: {}
 
 resources:
   limits:
-    cpu: 100m
-    memory: 256Mi
+    cpu: 4
+    memory: 6144Mi
   requests:
-    cpu: 80m
-    memory: 128Mi
+    cpu: 1
+    memory: 2048Mi
 
 nodeSelector: {}
 
@@ -65,3 +67,52 @@ backoffLimit: 0
 
 # default is Always but for Jobs use Never or OnFailure
 restartPolicy: Never
+
+clusterrole:
+  rules:
+  - apiGroups:
+    - ""
+    resources:
+    - pods
+    - pods/log
+    - secrets
+    - services
+    verbs:
+    - get
+    - list
+    - watch
+  - apiGroups:
+    - ""
+    resources:
+    - namespaces
+    verbs:
+    - get
+    - list
+  - apiGroups:
+    - tekton.dev
+    resources:
+    - pipelines
+    - pipelineruns
+    - tasks
+    - taskruns
+    verbs:
+    - get
+    - list
+    - watch
+  - apiGroups:
+    - apps
+    resources:
+    - deployments
+    verbs:
+    - get
+    - list
+    - watch
+  - apiGroups:
+    - extensions
+    - "networking.k8s.io" # k8s 1.14+
+    resources:
+    - ingresses
+    verbs:
+    - get
+    - list
+    - watch

@@ -9,13 +9,13 @@ build: clean
 	helm lint
 
 install: clean build
-	helm install . --name ${NAME}
+	helm install ${NAME} .
 
 upgrade: clean build
-	helm upgrade ${NAME} .
+	helm upgrade --install ${NAME} .
 
 delete:
-	helm delete --purge ${NAME}
+	helm delete ${NAME}
 
 clean:
 	rm -rf charts
