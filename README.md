@@ -12,7 +12,7 @@ helm repo add jx3 https://storage.googleapis.com/jenkinsxio/charts
 To install the helm chart you need to specify some values:
 
 ```bash          
-helm install bdd jx3/jx-bdd --set bdd.username=$GIT_USERNAME --set bdd.token=$GIT_TOKEN
+helm install bdd jx3/jx-bdd --set bdd.owner=mygitowner
 ```
 
 You can view the logs via:
