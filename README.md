@@ -20,7 +20,7 @@ By default it will reuse the git user/token from the `tekton-git` secret but you
 You can view the logs via:
 
 ```bash
-kubectl logs -f -l app=jx-bdd
+kubectl logs -f job/jx-bdd
 ```
 
 To terminate the BDD tests
