@@ -33,8 +33,8 @@ image:
   pullPolicy: IfNotPresent
 
 
-jxgoRepository: ghcr.io/jenkins-x/jx-go
-jxgoTag: "3.1.237"
+jxgoRepository: ghcr.io/jenkins-x/jx-go-maven
+jxgoTag: "3.1.238"
 
 nameOverride: ""
 fullnameOverride: ""
