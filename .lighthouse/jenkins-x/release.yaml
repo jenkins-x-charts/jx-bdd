@@ -28,8 +28,8 @@ spec:
           resources: {}
         - name: promote-changelog
           resources: {}
-        - name: promote-helm-release
-          resources: {}
+        - name: release-chart
+          image: uses:jenkins-x/jx3-pipeline-catalog/tasks/go-plugin/git-clone.yaml@versionStream
   podTemplate: {}
   serviceAccountName: tekton-bot
   timeout: 240h0m0s
