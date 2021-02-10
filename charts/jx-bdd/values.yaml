@@ -46,7 +46,8 @@ serviceAccount:
   annotations: {}
 
 # define environment variables here as a map of key: value
-env: {}
+env:
+  XDG_CONFIG_HOME: /home/config
 
 # a map of annotations to add to the pod
 podAnnotations: {}
