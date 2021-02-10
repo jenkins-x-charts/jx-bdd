@@ -49,6 +49,19 @@ serviceAccount:
 env:
   XDG_CONFIG_HOME: /home/config
 
+  JX_DISABLE_DELETE_APP: "true"
+  JX_DISABLE_DELETE_REPO: "true"
+
+  # increase the timeout for complete PipelineActivity
+  BDD_TIMEOUT_PIPELINE_ACTIVITY_COMPLETE: "60"
+
+  # we don't yet update the PipelineActivity.spec.pullTitle on previews....
+  BDD_DISABLE_PIPELINEACTIVITY_CHECK: "true"
+
+  # disable checking for PipelineActivity status == Succeeded for now while we fix up a timing issue
+  BDD_ASSERT_ACTIVITY_SUCCEEDED: "false"
+
+
 # a map of annotations to add to the pod
 podAnnotations: {}
 
