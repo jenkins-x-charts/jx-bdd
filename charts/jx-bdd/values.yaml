@@ -58,6 +58,9 @@ env:
   # we don't yet update the PipelineActivity.spec.pullTitle on previews....
   BDD_DISABLE_PIPELINEACTIVITY_CHECK: "true"
 
+  # lets skip manual promotion
+  JX_BDD_SKIP_MANUAL_PROMOTION: "true"
+
   # disable checking for PipelineActivity status == Succeeded for now while we fix up a timing issue
   BDD_ASSERT_ACTIVITY_SUCCEEDED: "false"
 

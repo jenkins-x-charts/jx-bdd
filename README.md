@@ -15,15 +15,21 @@ To install the helm chart you need to specify some values:
 helm install bdd jx3/jx-bdd --set bdd.owner=mygitowner
 ```
 
-By default it will reuse the git user/token from the `tekton-git` secret but you can specify another secret if you prefer via `bdd.gitSecret`
+By default the Job will reuse the git user/token from the `tekton-git` secret but you can specify another secret if you prefer via `bdd.gitSecret`
 
-You can view the logs via:
+You can wait for the job to start, tail the logs and assert it succeeds via:
+
+```bash 
+jx verify job -l app=jx-bdd
+```
+
+Or you can view the logs via:
 
 ```bash
 kubectl logs -f job/jx-bdd
 ```
 
-To terminate the BDD tests
+To terminate or remove the BDD tests
 
 ```bash          
 helm delete bdd
