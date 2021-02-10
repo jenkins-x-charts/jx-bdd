@@ -12,15 +12,19 @@ bdd:
   quickstart: golang
 
 command:
-  - bash
-  - -c 
+  shell: bash
 
-args:
-  - |
-    git clone https://github.com/jenkins-x/bdd-jx3
-    cd bdd-jx3
-    jx gitops git setup
-    go mod download
+  # the git URL containing the BDD tests
+  gitUrl: https://github.com/jenkins-x/bdd-jx3
+
+  # the command to download go mods
+  goModDownload: go mod download
+
+  # setup git
+  setup: jx gitops git setup
+
+  # run the actual BDD test inside the git clone
+  test: |
     make test-quickstart-golang-http
 
 image:

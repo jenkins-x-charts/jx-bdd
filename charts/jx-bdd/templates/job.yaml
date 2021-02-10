@@ -29,15 +29,16 @@ spec:
 {{- end }}
       serviceAccountName: "{{ .Values.serviceAccount.name | default "jx-bdd" }}"
       containers:
-        - name: {{ .Chart.Name }}
-          {{ if .Values.command -}}
+        - name: test
           command:
-{{ toYaml .Values.command | indent 10 }}
-          {{- end }}
-          {{ if .Values.args -}}
-          args:
-{{ toYaml .Values.args | indent 10 }}
-          {{- end }}
+          - {{ .Values.command.shell }}
+          - -c
+          - |
+            git clone {{ .Values.command.gitUrl }} bdd
+            cd bdd
+            {{ .Values.command.goModDownload }}
+            {{ .Values.command.setup }}
+            {{ .Values.command.test }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           env:
