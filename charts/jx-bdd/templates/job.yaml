@@ -40,7 +40,7 @@ spec:
             {{ .Values.command.setup }}
             {{ .Values.command.test }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: "{{ .Values.jxgoRepository }}:{{ .Values.jxgoTag }}"
           env:
           - name: GIT_SECRET_MOUNT_PATH
             value: /secrets/git

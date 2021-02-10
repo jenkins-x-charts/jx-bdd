@@ -32,6 +32,10 @@ image:
   tag: "3.1.211"
   pullPolicy: IfNotPresent
 
+
+jxgoRepository: ghcr.io/jenkins-x/jx-go
+jxgoTag: "3.1.235"
+
 nameOverride: ""
 fullnameOverride: ""
 
