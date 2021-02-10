@@ -9,7 +9,9 @@ rules:
   - pods
   - pods/log
   verbs: ["get", "list", "watch"]
-- apiGroups: ["jenkins.io"]
+- apiGroups:
+  - jenkins.io
+  - preview.jenkins.io
   resources: ["*"]
   verbs: ["get", "list", "watch"]
 - apiGroups: ["tekton.dev"]
