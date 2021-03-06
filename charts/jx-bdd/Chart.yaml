@@ -2,6 +2,6 @@ apiVersion: v2
 name: jx-bdd
 description: A helm chart for running the Jenkins X BDD tests
 type: application
-version: 0.1.0
+version: 1.0.24
 icon: https://avatars2.githubusercontent.com/u/47602533
 appVersion: 0.0.88
