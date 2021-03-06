@@ -37,7 +37,8 @@ spec:
             git clone {{ .Values.command.gitUrl }} bdd
             cd bdd
             {{ .Values.command.goModDownload }}
-            {{ .Values.command.setup }}
+            echo "using git provider URL: {{ .Values.bdd.gitServerURL }}"
+            jx gitops git setup --git-provider "{{ .Values.bdd.gitServerURL }}"
             {{ .Values.command.test }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           image: "{{ .Values.jxgoRepository }}:{{ .Values.jxgoTag }}"

@@ -26,9 +26,6 @@ command:
   # the command to download go mods
   goModDownload: go mod download
 
-  # setup git
-  setup: jx gitops git setup --git-provider = $GIT_PROVIDER_URL
-
   # run the actual BDD test inside the git clone
   test: |
     make test-quickstart-golang-http
