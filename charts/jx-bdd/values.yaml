@@ -27,7 +27,7 @@ command:
   goModDownload: go mod download
 
   # setup git
-  setup: jx gitops git setup
+  setup: jx gitops git setup --git-provider = $GIT_PROVIDER_URL
 
   # run the actual BDD test inside the git clone
   test: |
