@@ -5,6 +5,12 @@ bdd:
   # the git organisation used to create quickstarts inside. Defaults to the git user
   owner: ""
 
+  # the kind of git provider used
+  kind: "github"
+
+  # the git server URL
+  gitServerURL: "https://github.com"
+
   # the git server host
   gitServerHost: "github.com"
 

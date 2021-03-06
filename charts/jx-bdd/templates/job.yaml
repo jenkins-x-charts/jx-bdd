@@ -58,6 +58,10 @@ spec:
             value: "{{ .Values.bdd.owner }}"
           - name: GIT_ORGANISATION
             value: "{{ .Values.bdd.owner }}"
+          - name: GIT_PROVIDER_URL
+            value: "{{ .Values.bdd.gitServerURL }}"
+          - name: GIT_KIND
+            value: "{{ .Values.bdd.kind }}"
           - name: GIT_SERVER_HOST
             value: "{{ .Values.bdd.gitServerHost }}"
           - name: QUICKSTART
