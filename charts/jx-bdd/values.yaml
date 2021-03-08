@@ -17,6 +17,9 @@ bdd:
   # the name of the quickstart to test
   quickstart: golang
 
+  # the name of the secret for ChatOps approver
+  approverSecret: ""
+
 command:
   shell: bash
 

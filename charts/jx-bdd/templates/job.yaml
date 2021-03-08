@@ -67,6 +67,18 @@ spec:
             value: "{{ .Values.bdd.gitServerHost }}"
           - name: QUICKSTART
             value: "{{ .Values.bdd.quickstart }}"
+{{- if .Values.approverSecret }}
+          - name: BDD_APPROVER_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: "{{ .Values.approverSecret }}"
+                key: username
+          - name: BDD_APPROVER_ACCESS_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: "{{ .Values.approverSecret }}"
+                key: password
+{{- end }}
 {{- if .Values.env }}
 {{- range $pkey, $pval := .Values.env }}
           - name: {{ $pkey }}
