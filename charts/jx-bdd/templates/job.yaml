@@ -109,3 +109,9 @@ spec:
       tolerations:
 {{ toYaml . | indent 8 }}
     {{- end }}
+{{- if and (.Values.hostAlias.ip) (.Values.hostAlias.hostname) }}
+      hostAliases:
+      - ip: {{ .Values.hostAlias.ip | quote }}
+        hostnames:
+        - {{ .Values.hostAlias.hostname | quote }}
+{{- end }}

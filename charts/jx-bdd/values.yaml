@@ -48,6 +48,10 @@ image:
 jxgoRepository: ghcr.io/jenkins-x/jx-go-maven
 jxgoTag: "3.1.238"
 
+hostAlias:
+  ip: ""
+  hostname: ""
+
 nameOverride: ""
 fullnameOverride: ""
 
