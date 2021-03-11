@@ -1,4 +1,10 @@
 bdd:
+  # the git user for running BDD tests. If not specified uses the gitSecret
+  user: ""
+
+  # the git token for running BDD tests. If not specified uses the gitSecret
+  token: ""
+
   # the git secret name used to find the git user and token
   gitSecret: tekton-git
 

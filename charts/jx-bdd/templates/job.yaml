@@ -45,16 +45,26 @@ spec:
           env:
           - name: GIT_SECRET_MOUNT_PATH
             value: /secrets/git
+{{- if .Values.bdd.user }}
+          - name: GIT_USERNAME
+            value: {{- .Values.bdd.user | quote }}
+{{- else }}
           - name: GIT_USERNAME
             valueFrom:
               secretKeyRef:
                 name: {{ .Values.bdd.gitSecret | default "tekton-git" }}
                 key: username
+{{- end }}
+{{- if .Values.bdd.token }}
+          - name: GIT_TOKEN
+            value: {{- .Values.bdd.token | quote }}
+{{- else }}
           - name: GIT_TOKEN
             valueFrom:
               secretKeyRef:
                 name: {{ .Values.bdd.gitSecret | default "tekton-git" }}
                 key: password
+{{- end }}
           - name: GH_OWNER
             value: "{{ .Values.bdd.owner }}"
           - name: GIT_ORGANISATION
