@@ -47,7 +47,7 @@ spec:
             value: /secrets/git
 {{- if .Values.bdd.user }}
           - name: GIT_USERNAME
-            value: {{- .Values.bdd.user | quote }}
+            value: {{ .Values.bdd.user | quote }}
 {{- else }}
           - name: GIT_USERNAME
             valueFrom:
@@ -57,7 +57,7 @@ spec:
 {{- end }}
 {{- if .Values.bdd.token }}
           - name: GIT_TOKEN
-            value: {{- .Values.bdd.token | quote }}
+            value: {{ .Values.bdd.token | quote }}
 {{- else }}
           - name: GIT_TOKEN
             valueFrom:
