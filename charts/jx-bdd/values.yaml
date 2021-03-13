@@ -88,11 +88,11 @@ jobAnnotations: {}
 
 resources:
   limits:
-    cpu: 4
-    memory: 6144Mi
-  requests:
     cpu: 1
     memory: 2048Mi
+  requests:
+    cpu: 0.1
+    memory: 512Mi
 
 nodeSelector: {}
 
