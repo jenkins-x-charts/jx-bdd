@@ -69,7 +69,7 @@ env:
   JX_DISABLE_DELETE_REPO: "true"
   
   # default to batch mode so jx commands don't ask for input
-  JX_BATCH_MODE: "true"
+  #JX_BATCH_MODE: "true"
 
   # increase the timeout for complete PipelineActivity
   BDD_TIMEOUT_PIPELINE_ACTIVITY_COMPLETE: "60"
