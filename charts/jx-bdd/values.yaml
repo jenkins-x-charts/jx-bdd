@@ -1,94 +1,65 @@
 bdd:
   # the git user for running BDD tests. If not specified uses the gitSecret
   user: ""
-
   # the git token for running BDD tests. If not specified uses the gitSecret
   token: ""
-
   # the git secret name used to find the git user and token
   gitSecret: tekton-git
-
   # the git organisation used to create quickstarts inside. Defaults to the git user
   owner: ""
-
   # the kind of git provider used
   kind: "github"
-
   # the git server URL
   gitServerURL: "https://github.com"
-
   # the git server host
   gitServerHost: "github.com"
-
   # the name of the quickstart to test
   quickstart: golang
-
   # the name of the secret for ChatOps approver
   approverSecret: ""
-
 command:
   shell: bash
-
   # the git URL containing the BDD tests
   gitUrl: https://github.com/jenkins-x/bdd-jx3
-
   # the command to download go mods
   goModDownload: go mod download
-
   # run the actual BDD test inside the git clone
   test: |
     make test-quickstart-golang-http
-
 image:
-  repository: ghcr.io/jenkins-x/jx-go
-  tag: "3.1.211"
+  repository: ghcr.io/jenkins-x/jx-bdd
+  tag: "1.0.35"
   pullPolicy: IfNotPresent
-
-
 jxgoRepository: ghcr.io/jenkins-x/jx-go-maven
 jxgoTag: "3.1.238"
-
 hostAlias:
   ip: ""
   hostname: ""
-
 nameOverride: ""
 fullnameOverride: ""
-
 serviceAccount:
   create: true
   name: "jx-bdd"
   # a map of annotations to add to the ServiceAccount
   annotations: {}
-
 # define environment variables here as a map of key: value
 env:
   XDG_CONFIG_HOME: /home/config
-
   JX_DISABLE_DELETE_APP: "true"
   JX_DISABLE_DELETE_REPO: "true"
-  
   # default to batch mode so jx commands don't ask for input
   JX_BATCH_MODE: "true"
-
   # increase the timeout for complete PipelineActivity
   BDD_TIMEOUT_PIPELINE_ACTIVITY_COMPLETE: "60"
-
   # we don't yet update the PipelineActivity.spec.pullTitle on previews....
   BDD_DISABLE_PIPELINEACTIVITY_CHECK: "true"
-
   # lets skip manual promotion
   JX_BDD_SKIP_MANUAL_PROMOTION: "true"
-
   # disable checking for PipelineActivity status == Succeeded for now while we fix up a timing issue
   BDD_ASSERT_ACTIVITY_SUCCEEDED: "false"
-
-
 # a map of annotations to add to the pod
 podAnnotations: {}
-
 jobAnnotations: {}
-
 resources:
   limits:
     cpu: 1
@@ -96,67 +67,59 @@ resources:
   requests:
     cpu: 0.1
     memory: 512Mi
-
 nodeSelector: {}
-
 tolerations: []
-
 affinity: {}
-
 terminationGracePeriodSeconds: 30
-
 activeDeadlineSeconds: 12000
-
 backoffLimit: 0
-
 # default is Always but for Jobs use Never or OnFailure
 restartPolicy: Never
-
 clusterrole:
   rules:
-  - apiGroups:
-    - ""
-    resources:
-    - pods
-    - pods/log
-    - secrets
-    - services
-    verbs:
-    - get
-    - list
-    - watch
-  - apiGroups:
-    - ""
-    resources:
-    - namespaces
-    verbs:
-    - get
-    - list
-  - apiGroups:
-    - tekton.dev
-    resources:
-    - pipelines
-    - pipelineruns
-    - tasks
-    - taskruns
-    verbs:
-    - get
-    - list
-    - watch
-  - apiGroups:
-    - apps
-    resources:
-    - deployments
-    verbs:
-    - get
-    - list
-    - watch
-  - apiGroups:
-    - extensions
-    - "networking.k8s.io" # k8s 1.14+
-    resources:
-    - ingresses
-    verbs:
-    - get
-    - list
-    - watch
+    - apiGroups:
+        - ""
+      resources:
+        - pods
+        - pods/log
+        - secrets
+        - services
+      verbs:
+        - get
+        - list
+        - watch
+    - apiGroups:
+        - ""
+      resources:
+        - namespaces
+      verbs:
+        - get
+        - list
+    - apiGroups:
+        - tekton.dev
+      resources:
+        - pipelines
+        - pipelineruns
+        - tasks
+        - taskruns
+      verbs:
+        - get
+        - list
+        - watch
+    - apiGroups:
+        - apps
+      resources:
+        - deployments
+      verbs:
+        - get
+        - list
+        - watch
+    - apiGroups:
+        - extensions
+        - "networking.k8s.io" # k8s 1.14+
+      resources:
+        - ingresses
+      verbs:
+        - get
+        - list
+        - watch
